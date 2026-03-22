@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-const BACKEND_URL = "https://1k.up.railway.app";
+const BACKEND_URL = "http://backend.railway.internal:3001";
 
 interface Message {
   role: "user" | "agent";
