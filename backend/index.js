@@ -63,7 +63,7 @@ app.post("/clear", (req, res) => {
   res.json({ status: "History cleared" });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Web Agent API running on port ${PORT}`);
 });
