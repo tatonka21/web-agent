@@ -3,7 +3,11 @@ const cors = require("cors");
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["https://1kx.up.railway.app", "http://localhost:5173"],
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
+}));
 app.use(express.json());
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
