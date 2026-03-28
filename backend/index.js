@@ -7,7 +7,13 @@ const { exec } = require("child_process");
 
 const app = express();
 app.use(cors({
-  origin: ["https://1kx.up.railway.app", "http://localhost:5173"],
+  origin: [
+    "https://1kxbe.up.railway.app",
+    "https://1kx.up.railway.app",
+    "https://tatonka21.github.io",
+    "http://localhost:5173",
+    "http://localhost:3000"
+  ],
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"]
 }));
@@ -161,7 +167,6 @@ async function processToolCalls(reply) {
         fs.mkdirSync(dirPath, { recursive: true });
         fs.writeFileSync(toolCall.path, toolCall.content, "utf8");
         result = `✅ File written: ${toolCall.path}`;
-
       } else if (toolCall.tool === "read-file") {
         if (fs.existsSync(toolCall.path)) {
           const content = fs.readFileSync(toolCall.path, "utf8");
@@ -169,13 +174,11 @@ async function processToolCalls(reply) {
         } else {
           result = `❌ File not found: ${toolCall.path}`;
         }
-
       } else if (toolCall.tool === "execute") {
         const execResult = await executeCommand(toolCall.command);
         result = execResult.success
           ? `✅ Command output:\n${execResult.output}`
           : `❌ Command failed:\n${execResult.output}`;
-
       } else if (toolCall.tool === "list-dir") {
         if (fs.existsSync(toolCall.path)) {
           const items = fs.readdirSync(toolCall.path);
