@@ -28,7 +28,7 @@ IMPORTANT RULES YOU MUST ALWAYS FOLLOW:
 - NEVER suggest React Native. Always use plain React for web apps.
 - NEVER suggest npm install, npx, or terminal commands to the user.
 - The user has a Monaco code editor and Sandpack live preview built into the UI.
-- When you write code, the user can click "Open in Editor" to see it in Monaco and "Run Preview" to run it live in Sandpack.
+- When you write code, the user can click Open in Editor to see it in Monaco and Run Preview to run it live in Sandpack.
 
 HOW TO RESPOND:
 - Always write complete, self-contained React components that work in a browser.
@@ -53,7 +53,6 @@ function saveHistory(history) {
 
 let conversationHistory = loadHistory();
 
-// ── GitHub proxy helpers ─────────────────────────────────────────
 async function ghFetch(path, options={}) {
   const r = await fetch(`https://api.github.com${path}`, {
     ...options,
@@ -63,7 +62,6 @@ async function ghFetch(path, options={}) {
   return r.json();
 }
 
-// ── GitHub proxy routes ──────────────────────────────────────────
 app.get("/github/user", async (req,res) => {
   const data = await ghFetch("/user");
   res.json(data);
@@ -106,7 +104,6 @@ app.post("/github/repos", async (req,res) => {
   res.json(data);
 });
 
-// ── AI routes ────────────────────────────────────────────────────
 app.get("/", (req,res) => res.json({ status:"Web Agent API is running!", historyLength:conversationHistory.length }));
 
 async function callGemini(history) {
